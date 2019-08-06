@@ -1,12 +1,13 @@
-import pygame, sys
+import pygame, sys, time
 from pygame.locals import *
 
 def main():
 	pygame.init()
-	surface = pygame.display.set_mode((500,500))
-	pygame.display.set_caption('Hello world!')
+	surface = pygame.display.set_mode((1000,500))
+	pygame.display.set_caption('Aboense')
 	
 	while True:
+		time.sleep(.01)
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				pygame.quit()
