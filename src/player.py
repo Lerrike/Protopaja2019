@@ -1,5 +1,5 @@
 class Player():
-	def __init__(number):
+	def __init__(self, number):
 		self.number = number #Player number, "name"
 		self.hearth = 0
 		self.hearthList = []

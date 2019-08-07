@@ -1,5 +1,7 @@
 import pygame, sys, time
 from pygame.locals import *
+from player import Player
+from drawplayer import DrawPlayer
 
 def main():
 	pygame.init()
@@ -7,6 +9,8 @@ def main():
 	white = [255, 255, 255]
 	surface.fill(white)
 	pygame.display.set_caption('Aboense')
+	
+	drawPlayer1 = DrawPlayer(surface, 0, 0)
 	
 	pygame.display.flip()
 	while True:
