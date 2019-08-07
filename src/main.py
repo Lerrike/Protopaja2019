@@ -20,8 +20,8 @@ def main():
 	for i in range(5):
 		player = Player(i)
 		drawPlayer = DrawPlayer(surface, 0, i*100)
-		drawPlayer.drawStringData(player.return_number(), player.return_hearth(), player.return_breath())
-		drawPlayer.drawGraph(player.return_hearthList(), player.return_breathList())
+		drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath())
+		drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
 		drawPlayer.drawPosition(player.return_xPos(), player.return_yPos())
 		
 		combination = []

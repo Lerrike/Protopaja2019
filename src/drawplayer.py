@@ -26,7 +26,7 @@ class DrawPlayer():
 		self.number = font.render('#'+str(name), False, (155, 155, 155))
 		self.surface.blit(self.number, (0, self.start_yPos))
 		
-		self.hearth = font.render('Current Hearth:'+str(hearth), False, (255, 0, 0))
+		self.hearth = font.render('Current Heart:'+str(hearth), False, (255, 0, 0))
 		self.surface.blit(self.hearth, (0, self.start_yPos+50))
 		
 		self.breath = font.render('Current Breath:'+str(breath), False, (0, 0, 255))
