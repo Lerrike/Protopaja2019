@@ -8,6 +8,13 @@ def main():
 	surface = pygame.display.set_mode((750,500))
 	white = [255, 255, 255]
 	surface.fill(white)
+	blue = [122,197,205]
+	pygame.display.flip()
+	
+	pygame.draw.rect(surface, blue, (500,0,250,500),0)
+	pygame.display.update()
+
+    
 	pygame.display.set_caption('Aboense')
 	
 	playerList = []
