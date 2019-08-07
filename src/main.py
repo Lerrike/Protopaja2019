@@ -14,7 +14,6 @@ def main():
 	pygame.draw.rect(surface, blue, (500,0,250,500),0)
 	pygame.display.update()
 
-    
 	pygame.display.set_caption('Aboense')
 	
 	playerList = []
@@ -22,8 +21,9 @@ def main():
 		player = Player(i)
 		drawPlayer = DrawPlayer(surface, 0, i*100)
 		drawPlayer.drawStringData(player.return_number(), player.return_hearth(), player.return_breath())
-		drawPlayer.drawGraph()
+		drawPlayer.drawGraph(player.return_hearthList(), player.return_breathList())
 		drawPlayer.drawPosition(player.return_xPos(), player.return_yPos())
+		
 		combination = []
 		combination.append(player)
 		combination.append(drawPlayer)
