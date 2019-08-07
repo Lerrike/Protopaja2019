@@ -10,7 +10,15 @@ def main():
 	surface.fill(white)
 	pygame.display.set_caption('Aboense')
 	
-	drawPlayer1 = DrawPlayer(surface, 0, 0)
+	playerList = []
+	for i in range(5):
+		print(i)
+		player = Player(i)
+		drawPlayer = DrawPlayer(surface, 0, i*100)
+		combination = []
+		combination.append(player)
+		combination.append(drawPlayer)
+		playerList.append(combination)
 	
 	pygame.display.flip()
 	while True:
