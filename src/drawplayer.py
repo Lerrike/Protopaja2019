@@ -53,4 +53,4 @@ class DrawPlayer():
 		
 	def drawPosition(self, xPos, yPos):
 		center = [int(xPos*250/20) + 500, int(yPos*500/40)]
-		self.positionCircle = pygame.draw.circle(self.surface, (155, 155, 155), center, 5)
+		self.positionCircle = pygame.draw.circle(self.surface, (255, 255, 0), center, 5)
