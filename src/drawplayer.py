@@ -10,6 +10,9 @@ class DrawPlayer():
 		self.number = 0
 		self.hearth = 0
 		self.breath = 0
+		self.hearthGraph = []
+		self.breathGraph = []
+		self.positionCircle = 0
 		
 		pygame.draw.line(self.surface, pygame.Color(155,155,155), (start_xPos, start_yPos), (start_xPos+500, start_yPos))
 		pygame.draw.line(self.surface, pygame.Color(155,155,155), (start_xPos, start_yPos+100), (start_xPos+500, start_yPos+100))
@@ -19,7 +22,7 @@ class DrawPlayer():
 		
 	def drawStringData(self, name, hearth, breath):
 		pygame.font.init()
-		font = pygame.font.SysFont('Calibri', 30)
+		font = pygame.font.SysFont('Calibri', 15)
 		self.number = font.render('#'+str(name), False, (155, 155, 155))
 		self.surface.blit(self.number, (0, self.start_yPos))
 		
@@ -28,3 +31,10 @@ class DrawPlayer():
 		
 		self.breath = font.render('Breath:'+str(breath), False, (155, 155, 155))
 		self.surface.blit(self.breath, (125, self.start_yPos+50))
+		
+	def drawGraph(self):
+		pass
+		
+	def drawPosition(self, xPos, yPos):
+		center = [xPos + 500, yPos]
+		self.positionCircle = pygame.draw.circle(self.surface, (155, 155, 155), center, 5)

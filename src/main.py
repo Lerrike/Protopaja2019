@@ -12,10 +12,11 @@ def main():
 	
 	playerList = []
 	for i in range(5):
-		print(i)
 		player = Player(i)
 		drawPlayer = DrawPlayer(surface, 0, i*100)
 		drawPlayer.drawStringData(player.return_number(), player.return_hearth(), player.return_breath())
+		drawPlayer.drawGraph()
+		drawPlayer.drawPosition(player.return_xPos(), player.return_yPos())
 		combination = []
 		combination.append(player)
 		combination.append(drawPlayer)
