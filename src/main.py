@@ -22,6 +22,7 @@ def main():
 		print(i)
 		player = Player(i)
 		drawPlayer = DrawPlayer(surface, 0, i*100)
+		drawPlayer.drawStringData(player.return_number(), player.return_hearth(), player.return_breath())
 		combination = []
 		combination.append(player)
 		combination.append(drawPlayer)
