@@ -20,7 +20,8 @@ def main():
 		player = Player(i)
 		drawPlayer = DrawPlayer(surface, 0, i*100)
 		drawPlayer.drawBox()
-		drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath())
+		drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
+				player.return_xPos(), player.return_yPos())
 		drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
 		drawPlayer.drawPosition(player.return_xPos(), player.return_yPos())
 		
@@ -58,7 +59,8 @@ def main():
 			drawPlayer = combination[1]
 			player.update_all(int(list[0]), int(list[1]),int(list[2]), int(list[3]))
 			drawPlayer.drawBox()
-			drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath())
+			drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
+				player.return_xPos(), player.return_yPos())
 			drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
 			drawPlayer.drawPosition(player.return_xPos(), player.return_yPos())
 			#i = i + 1
