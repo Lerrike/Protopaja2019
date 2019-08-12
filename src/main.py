@@ -46,10 +46,9 @@ def main():
 		white = [255, 255, 255]
 		surface.fill(white)
 		blue = [122,197,205]
-		#pygame.display.flip()
 		pygame.draw.rect(surface, blue, (500,0,250,500),0)
 		#i = 0
-		for i in range(4):
+		for i in range(5):
 			file = dict["file{0}".format(i)]
 			line = file.readline()
 			line = line.rstrip()
