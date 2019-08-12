@@ -56,7 +56,7 @@ class DrawPlayer():
 			prev_value = value
 			i = i + 1
 		
-	def drawPosition(self, xPos, yPos):
+	def drawPosition(self, xPos, yPos, name):
 		if xPos <= 0:
 			xPos = 0
 		elif xPos >= 20:
@@ -65,5 +65,12 @@ class DrawPlayer():
 			yPos = 0
 		elif yPos >= 40:
 			yPos = 40
-		center = [int(xPos*250/20) + 500, int(yPos*500/40)]
-		self.positionCircle = pygame.draw.circle(self.surface, (255, 255, 0), center, 5)
+		xPos = int(xPos*250/20) + 500
+		yPos = int(yPos*500/40)
+		center = [xPos, yPos]
+		self.positionCircle = pygame.draw.circle(self.surface, (255, 255, 0), center, 10)
+		
+		pygame.font.init()
+		font = pygame.font.SysFont('Calibri', 15)
+		self.number = font.render(str(name), False, (155, 155, 155))
+		self.surface.blit(self.number, (xPos-5, yPos-7))

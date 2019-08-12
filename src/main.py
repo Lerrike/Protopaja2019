@@ -23,7 +23,7 @@ def main():
 		drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
 				player.return_xPos(), player.return_yPos())
 		drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
-		drawPlayer.drawPosition(player.return_xPos(), player.return_yPos())
+		drawPlayer.drawPosition(player.return_xPos(), player.return_yPos(), player.return_number())
 		
 		combination = []
 		combination.append(player)
@@ -62,7 +62,7 @@ def main():
 			drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
 				player.return_xPos(), player.return_yPos())
 			drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
-			drawPlayer.drawPosition(player.return_xPos(), player.return_yPos())
+			drawPlayer.drawPosition(player.return_xPos(), player.return_yPos(), player.return_number())
 			#i = i + 1
 		
 		pygame.display.flip()
