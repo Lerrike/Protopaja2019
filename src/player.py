@@ -1,3 +1,4 @@
+#Data storage class. Has update and getter methods.
 class Player():
 	def __init__(self, number):
 		self.number = number #Player number, "name"

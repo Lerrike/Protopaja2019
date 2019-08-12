@@ -4,6 +4,7 @@ from player import Player
 from drawplayer import DrawPlayer
 from Data_parse import data_parse
 
+#Initializes pygame and has main loop. In the main loop receives data and draws it using Player and DrawPlayer.
 def main():
 	pygame.init()
 	surface = pygame.display.set_mode((750,500))
@@ -12,18 +13,17 @@ def main():
 	white = [255, 255, 255]
 	surface.fill(white)
 	blue = [122,197,205]
-	pygame.display.flip()
 	pygame.draw.rect(surface, blue, (500,0,250,500),0)
 	
-	playerList = []
+	playerList = [] #A combination of player and drawplayer classes in case if useful.
 	for i in range(5):
 		player = Player(i)
 		drawPlayer = DrawPlayer(surface, 0, i*100)
-		drawPlayer.drawBox()
-		drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
-				player.return_xPos(), player.return_yPos())
-		drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
-		drawPlayer.drawPosition(player.return_xPos(), player.return_yPos(), player.return_number())
+		#drawPlayer.drawBox()
+		#drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
+		#		player.return_xPos(), player.return_yPos())
+		#drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
+		#drawPlayer.drawPosition(player.return_xPos(), player.return_yPos(), player.return_number())
 		
 		combination = []
 		combination.append(player)

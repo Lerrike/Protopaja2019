@@ -1,3 +1,4 @@
+#Parses the data from a string into a list of size 4.
 def data_parse(line): #example line: 26.7.2019.11.10.54#x/10#y/5#Breathing/33#Heart/85
     data_list = [0,0,0,0] #[x, y, breathing, heart]
     

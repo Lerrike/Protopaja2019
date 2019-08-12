@@ -1,6 +1,8 @@
 import pygame
 from pygame.locals import *
 
+#Pygame draw class. Draws the different sections to the pygame screen. DrawStringData draws readable data.
+#DrawGraph draws the graph. DrawPosition draws the position.
 class DrawPlayer():
 	def __init__(self, surface, start_xPos, start_yPos):
 		self.surface = surface
@@ -28,7 +30,7 @@ class DrawPlayer():
 		self.number = font.render('#'+str(name), False, (155, 155, 155))
 		self.surface.blit(self.number, (0, self.start_yPos))
 		
-		self.position = font.render('xPos:'+str(xPos)+", yPos:"+str(yPos), False, (155, 155, 155))
+		self.position = font.render('xPos:'+str(xPos)+", yPos:"+str(yPos), False, (0, 0, 0))
 		self.surface.blit(self.position, (0, self.start_yPos+25))
 		
 		self.hearth = font.render('Current Heart:'+str(hearth), False, (255, 0, 0))
@@ -57,6 +59,7 @@ class DrawPlayer():
 			i = i + 1
 		
 	def drawPosition(self, xPos, yPos, name):
+		#Limits the positions inside bounds.
 		if xPos <= 0:
 			xPos = 0
 		elif xPos >= 20:
@@ -65,6 +68,7 @@ class DrawPlayer():
 			yPos = 0
 		elif yPos >= 40:
 			yPos = 40
+		#Maps real life meters into pixels on the screen.
 		xPos = int(xPos*250/20) + 500
 		yPos = int(yPos*500/40)
 		center = [xPos, yPos]
