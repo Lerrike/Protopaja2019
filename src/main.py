@@ -66,7 +66,7 @@ def main():
 			#i = i + 1
 		
 		pygame.display.flip()
-		time.sleep(1)
+		time.sleep(.5)
 		
 
 if __name__ == '__main__':

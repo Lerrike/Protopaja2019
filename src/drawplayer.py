@@ -73,4 +73,4 @@ class DrawPlayer():
 		pygame.font.init()
 		font = pygame.font.SysFont('Calibri', 15)
 		self.number = font.render(str(name), False, (155, 155, 155))
-		self.surface.blit(self.number, (xPos-5, yPos-7))
+		self.surface.blit(self.number, (xPos-4, yPos-7))
