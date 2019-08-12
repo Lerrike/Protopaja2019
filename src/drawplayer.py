@@ -14,6 +14,7 @@ class DrawPlayer():
 		self.breathGraph = []
 		self.positionCircle = 0
 		
+	def drawBox(self):
 		pygame.draw.line(self.surface, pygame.Color(155,155,155), (self.start_xPos, self.start_yPos), (self.start_xPos+500, self.start_yPos))
 		pygame.draw.line(self.surface, pygame.Color(155,155,155), (self.start_xPos, self.start_yPos+100), (self.start_xPos+500, self.start_yPos+100))
 		pygame.draw.line(self.surface, pygame.Color(155,155,155), (self.start_xPos, self.start_yPos), (self.start_xPos+100, self.start_yPos))
@@ -52,5 +53,13 @@ class DrawPlayer():
 			i = i + 1
 		
 	def drawPosition(self, xPos, yPos):
+		if xPos <= 0:
+			xPos = 0
+		elif xPos >= 20:
+			xPos = 20
+		if yPos <= 0:
+			yPos = 0
+		elif yPos >= 40:
+			yPos = 40
 		center = [int(xPos*250/20) + 500, int(yPos*500/40)]
 		self.positionCircle = pygame.draw.circle(self.surface, (255, 255, 0), center, 5)
