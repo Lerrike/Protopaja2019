@@ -27,7 +27,3 @@ def data_parse(line): #example line: 26.7.2019.11.10.54#x/10#y/5#Breathing/33#He
                 data_list[3] = line[(i+6):(i+8)]
          
         
-def main():
-    data_parse("26.7.2019.11.10.54#x/1#y/54#Breathing/33#Heart/85")
-
-main()
