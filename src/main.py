@@ -31,7 +31,7 @@ def main():
 		playerList.append(combination)
 		
 	sock = socket.socket()
-	sock.settimeout(10)
+	sock.settimeout(2)
 	sock.bind(('0.0.0.0', 8090 ))
 	sock.listen(0)
 	
@@ -55,30 +55,30 @@ def main():
 		blue = [122,197,205]
 		pygame.draw.rect(surface, blue, (500,0,250,500),0)
 		#i = 0
-		print("test1")
-		client, addr = sock.accept()
+		try:
+			client, addr = sock.accept()
+			for i in range(1):
+				#file = dict["file{0}".format(i)]
+				#line = file.readline()
+				content = client.recv(1024)
+				line = content.decode('utf-8')
+				line = line.rstrip()
+				list = data_parse(line)
+				combination = playerList[i]
+				player = combination[0]
+				drawPlayer = combination[1]
+				print(list)
+				player.update_all(float(list[0]), float(list[1]), float(list[2]), float(list[3]))
+				drawPlayer.drawBox()
+				drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
+					player.return_xPos(), player.return_yPos())
+				drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
+				drawPlayer.drawPosition(player.return_xPos(), player.return_yPos(), player.return_number())
+			pygame.display.flip()
+			
+		except socket.timeout:
+			print("Timeout, trying again.")
 		
-		for i in range(1):
-			#file = dict["file{0}".format(i)]
-			#line = file.readline()
-			print("test2")
-			content = client.recv(1024)
-			line = content.decode('utf-8')
-			line = line.rstrip()
-			list = data_parse(line)
-			combination = playerList[i]
-			player = combination[0]
-			drawPlayer = combination[1]
-			print(list)
-			player.update_all(float(list[0]), float(list[1]), float(list[2]), float(list[3]))
-			drawPlayer.drawBox()
-			drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
-				player.return_xPos(), player.return_yPos())
-			drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
-			drawPlayer.drawPosition(player.return_xPos(), player.return_yPos(), player.return_number())
-			#i = i + 1
-		
-		pygame.display.flip()
 		time.sleep(.1)
 		
 
