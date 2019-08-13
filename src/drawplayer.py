@@ -66,11 +66,11 @@ class DrawPlayer():
 			xPos = 20
 		if yPos <= 0:
 			yPos = 0
-		elif yPos >= 40:
-			yPos = 40
+		elif yPos >= 20:
+			yPos = 20
 		#Maps real life meters into pixels on the screen.
-		xPos = int(xPos*250/20) + 500
-		yPos = int(yPos*500/40)
+		xPos = int(xPos*250/20) + 500 #Change these if neccessary.
+		yPos = int(yPos*250/20)
 		center = [xPos, yPos]
 		self.positionCircle = pygame.draw.circle(self.surface, (255, 255, 0), center, 10)
 		
@@ -78,3 +78,4 @@ class DrawPlayer():
 		font = pygame.font.SysFont('Calibri', 15)
 		self.number = font.render(str(name), False, (155, 155, 155))
 		self.surface.blit(self.number, (xPos-4, yPos-7))
+		

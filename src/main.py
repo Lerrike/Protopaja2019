@@ -1,4 +1,4 @@
-import pygame, sys, time
+import pygame, sys, time, socket
 from pygame.locals import *
 from player import Player
 from drawplayer import DrawPlayer
@@ -29,10 +29,15 @@ def main():
 		combination.append(player)
 		combination.append(drawPlayer)
 		playerList.append(combination)
+		
+	sock = socket.socket()
+	sock.settimeout(10)
+	sock.bind(('0.0.0.0', 8090 ))
+	sock.listen(0)
 	
-	dict = {}
-	for x in range(5):
-		dict["file{0}".format(x)] = open("player{0}".format(x),"r")
+	#dict = {}
+	#for x in range(5):
+	#	dict["file{0}".format(x)] = open("player{0}".format(x),"r")
 	
 	pygame.display.flip()
 	while True:
@@ -40,8 +45,9 @@ def main():
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				pygame.quit()
-				for file in dict.values():
-					file.close()
+				#for file in dict.values():
+				#	file.close()
+				client.close()
 				sys.exit()
 		
 		white = [255, 255, 255]
@@ -49,15 +55,22 @@ def main():
 		blue = [122,197,205]
 		pygame.draw.rect(surface, blue, (500,0,250,500),0)
 		#i = 0
-		for i in range(5):
-			file = dict["file{0}".format(i)]
-			line = file.readline()
+		print("test1")
+		client, addr = sock.accept()
+		
+		for i in range(1):
+			#file = dict["file{0}".format(i)]
+			#line = file.readline()
+			print("test2")
+			content = client.recv(1024)
+			line = content.decode('utf-8')
 			line = line.rstrip()
 			list = data_parse(line)
 			combination = playerList[i]
 			player = combination[0]
 			drawPlayer = combination[1]
-			player.update_all(int(list[0]), int(list[1]),int(list[2]), int(list[3]))
+			print(list)
+			player.update_all(float(list[0]), float(list[1]), float(list[2]), float(list[3]))
 			drawPlayer.drawBox()
 			drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
 				player.return_xPos(), player.return_yPos())
@@ -66,7 +79,7 @@ def main():
 			#i = i + 1
 		
 		pygame.display.flip()
-		time.sleep(.5)
+		time.sleep(.1)
 		
 
 if __name__ == '__main__':
