@@ -1,6 +1,12 @@
 #Parses the data from a string into a list of size 4.
 def data_parse(line): #example line: 26.7.2019.11.10.54#x/10#y/5#Breathing/33#Heart/85
     data_list = [0,0,0,0] #[x, y, breathing, heart]
+    parts = line.split("#")
+    data_list[0] = parts[1].split("/")[1]
+    data_list[1] = parts[2].split("/")[1]
+    data_list[2] = parts[3].split("/")[1]
+    data_list[3] = parts[4].split("/")[1]
+    '''
     for i in range (0, len(line)):
         if line[i] == 'x':
             if line [i+6].isdigit() == True:
@@ -37,5 +43,5 @@ def data_parse(line): #example line: 26.7.2019.11.10.54#x/10#y/5#Breathing/33#He
                 data_list[3] = line[(i+6):(i+9)]
             else:
                 data_list[3] = line[(i+6):(i+8)]
-    
+    '''
     return data_list
