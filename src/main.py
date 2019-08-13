@@ -30,10 +30,10 @@ def main():
 		combination.append(drawPlayer)
 		playerList.append(combination)
 		
-	sock = socket.socket()
-	sock.settimeout(2)
-	sock.bind(('0.0.0.0', 8090 ))
-	sock.listen(0)
+	sock = socket.socket() #
+	sock.settimeout(2) #
+	sock.bind(('0.0.0.0', 8090 )) #
+	sock.listen(0) #
 	
 	#dict = {}
 	#for x in range(5):
@@ -54,7 +54,6 @@ def main():
 		surface.fill(white)
 		blue = [122,197,205]
 		pygame.draw.rect(surface, blue, (500,0,250,500),0)
-		#i = 0
 		try:
 			client, addr = sock.accept()
 			for i in range(1):
