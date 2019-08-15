@@ -11,27 +11,27 @@ def main():
 	pygame.display.set_caption('Aboense')
 	
 	white = [255, 255, 255]
-	surface.fill(white)
+	#surface.fill(white)
 	blue = [122,197,205]
-	pygame.draw.rect(surface, blue, (500,0,250,500),0)
+	#pygame.draw.rect(surface, blue, (500,0,250,500),0)
 	
-	playerList = [] #A combination of player and drawplayer classes in case if useful.
-	for i in range(5):
-		player = Player(i)
-		drawPlayer = DrawPlayer(surface, 0, i*100)
+	#playerList = [] #A combination of player and drawplayer classes in case if useful.
+	#for i in range(5):
+	#	player = Player(i)
+	#	drawPlayer = DrawPlayer(surface, 0, i*100)
 		#drawPlayer.drawBox()
 		#drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
 		#		player.return_xPos(), player.return_yPos())
 		#drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
 		#drawPlayer.drawPosition(player.return_xPos(), player.return_yPos(), player.return_number())
 		
-		combination = []
-		combination.append(player)
-		combination.append(drawPlayer)
-		playerList.append(combination)
+	#	combination = []
+	#	combination.append(player)
+	#	combination.append(drawPlayer)
+	#	playerList.append(combination)
 		
 	sock = socket.socket() #
-	sock.settimeout(2) #
+	sock.settimeout(1) #
 	sock.bind(('0.0.0.0', 8090 )) #
 	sock.listen(0) #
 	
@@ -40,6 +40,7 @@ def main():
 	#	dict["file{0}".format(x)] = open("player{0}".format(x),"r")
 	
 	pygame.display.flip()
+	playerList = []
 	while True:
 		time.sleep(.01)
 		for event in pygame.event.get():
@@ -47,36 +48,59 @@ def main():
 				pygame.quit()
 				#for file in dict.values():
 				#	file.close()
-				client.close()
+				if client:
+					client.close()
 				sys.exit()
 		
 		white = [255, 255, 255]
 		surface.fill(white)
 		blue = [122,197,205]
-		pygame.draw.rect(surface, blue, (500,0,250,500),0)
+		pygame.draw.rect(surface, blue, (500,0,250,250),0)
+		client = 0
+		
 		try:
 			client, addr = sock.accept()
-			for i in range(1):
-				#file = dict["file{0}".format(i)]
-				#line = file.readline()
-				content = client.recv(1024)
-				line = content.decode('utf-8')
-				line = line.rstrip()
-				list = data_parse(line)
-				combination = playerList[i]
+			#file = dict["file{0}".format(i)]
+			#line = file.readline()
+			content = client.recv(1024)
+			line = content.decode('utf-8')
+			line = line.rstrip()
+			list = data_parse(line)
+			print(list)
+			
+			condition = False
+			for sublist in playerList:
+				if sublist[0].return_name() == list[0]:
+					condition = True
+					break
+			if not condition:
+				player = Player(list[0])
+				drawPlayer = DrawPlayer(surface, 0, len(playerList)*100)
+				sublist = [player, drawPlayer]
+				playerList.append(sublist)
+			else:
+				combination = 0
+				for sublist in playerList:
+					if list[0] == sublist[0].return_name():
+						combination = sublist
+						break
 				player = combination[0]
 				drawPlayer = combination[1]
-				print(list)
-				player.update_all(float(list[0]), float(list[1]), float(list[2]), float(list[3]))
+				player.update_all(float(list[1]), float(list[2]), int(list[3]), int(list[4]))
+			for sublist in playerList:
+				player = sublist[0]
+				drawPlayer = sublist[1]
 				drawPlayer.drawBox()
-				drawPlayer.drawStringData(player.return_number(), player.return_heart(), player.return_breath(),\
+				drawPlayer.drawStringData(player.return_name(), player.return_heart(), player.return_breath(),\
 					player.return_xPos(), player.return_yPos())
 				drawPlayer.drawGraph(player.return_heartList(), player.return_breathList())
-				drawPlayer.drawPosition(player.return_xPos(), player.return_yPos(), player.return_number())
+				drawPlayer.drawPosition(player.return_xPos(), player.return_yPos(), player.return_name())
 			pygame.display.flip()
 			
 		except socket.timeout:
 			print("Timeout, trying again.")
+		#except:
+		#	print("Something else went wrong")
 		
 		time.sleep(.1)
 		

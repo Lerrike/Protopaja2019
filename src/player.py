@@ -1,7 +1,7 @@
 #Data storage class. Has update and getter methods.
 class Player():
-	def __init__(self, number):
-		self.number = number #Player number, "name"
+	def __init__(self, name):
+		self.name = name #Player number, "name"
 		self.heart = 0
 		self.heartList = []
 		self.breath = 0
@@ -17,8 +17,8 @@ class Player():
 		self.update_breathList(new_breath)
 		self.update_heartList(new_heart)
 		
-	def return_number(self):
-		return self.number
+	def return_name(self):
+		return self.name
 		
 	def change_heart(self, new_heart):
 		self.heart = new_heart

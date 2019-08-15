@@ -27,7 +27,7 @@ class DrawPlayer():
 	def drawStringData(self, name, hearth, breath, xPos, yPos):
 		pygame.font.init()
 		font = pygame.font.SysFont('Calibri', 15)
-		self.number = font.render('#'+str(name), False, (155, 155, 155))
+		self.number = font.render('#'+str(name), False, (0, 0, 0))
 		self.surface.blit(self.number, (0, self.start_yPos))
 		
 		self.position = font.render('xPos:'+str(xPos)+", yPos:"+str(yPos), False, (0, 0, 0))
@@ -60,22 +60,24 @@ class DrawPlayer():
 		
 	def drawPosition(self, xPos, yPos, name):
 		#Limits the positions inside bounds.
+		xPos = xPos + 1 #These two maps (0,0) to "1,1" on screen in a 5x5m square
+		yPos = yPos + 1
 		if xPos <= 0:
 			xPos = 0
-		elif xPos >= 20:
-			xPos = 20
+		elif xPos >= 5:
+			xPos = 5
 		if yPos <= 0:
 			yPos = 0
-		elif yPos >= 20:
-			yPos = 20
+		elif yPos >= 5:
+			yPos = 5
 		#Maps real life meters into pixels on the screen.
-		xPos = int(xPos*250/20) + 500 #Change these if neccessary.
-		yPos = int(yPos*250/20)
+		xPos = int((xPos)*250/5) + 500 #Change these if neccessary.
+		yPos = int((yPos)*250/5)
 		center = [xPos, yPos]
 		self.positionCircle = pygame.draw.circle(self.surface, (255, 255, 0), center, 10)
 		
 		pygame.font.init()
 		font = pygame.font.SysFont('Calibri', 15)
-		self.number = font.render(str(name), False, (155, 155, 155))
+		self.number = font.render(str(name), False, (0, 0, 0))
 		self.surface.blit(self.number, (xPos-4, yPos-7))
 		
