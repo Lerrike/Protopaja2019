@@ -10,9 +10,12 @@ def main():
 	surface = pygame.display.set_mode((750,500))
 	pygame.display.set_caption('Aboense')
 	
+	logo = pygame.image.load("Aboense(musta).png")
+	logo = pygame.transform.scale(logo, (250,250))
+	
 	white = [255, 255, 255]
+	blue = [81,167,249]
 	#surface.fill(white)
-	blue = [122,197,205]
 	#pygame.draw.rect(surface, blue, (500,0,250,500),0)
 	
 	#playerList = [] #A combination of player and drawplayer classes in case if useful.
@@ -52,10 +55,13 @@ def main():
 					client.close()
 				sys.exit()
 		
-		white = [255, 255, 255]
 		surface.fill(white)
-		blue = [122,197,205]
 		pygame.draw.rect(surface, blue, (500,0,250,250),0)
+		pygame.draw.line(surface, pygame.Color(0,0,0), (550, 50), (700, 50))
+		pygame.draw.line(surface, pygame.Color(0,0,0), (550, 200), (700,200))
+		pygame.draw.line(surface, pygame.Color(0,0,0), (550, 50), (550, 200))
+		pygame.draw.line(surface, pygame.Color(0,0,0), (700, 50), (700, 200))
+		surface.blit(logo, (500, 250))
 		client = 0
 		
 		try:
@@ -99,8 +105,8 @@ def main():
 			
 		except socket.timeout:
 			print("Timeout, trying again.")
-		#except:
-		#	print("Something else went wrong")
+		except IndexError:
+			print("Index out of bound")
 		
 		time.sleep(.1)
 		
