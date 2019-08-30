@@ -32,7 +32,9 @@ def main():
 	#	combination.append(player)
 	#	combination.append(drawPlayer)
 	#	playerList.append(combination)
-		
+	
+	#Socket for wifi connection from microcontroller to this software. Microcontrolled needs to be in same wifi that the computer
+	#has and the local ip address
 	sock = socket.socket() #
 	sock.settimeout(1) #
 	sock.bind(('0.0.0.0', 8090 )) #
@@ -64,6 +66,8 @@ def main():
 		surface.blit(logo, (500, 250))
 		client = 0
 		
+		#Tries to accept data. Reads data using dataparse. If player not in playerList adds it into playerList. If player IS
+		#on playerList draws player data on screen.
 		try:
 			client, addr = sock.accept()
 			#file = dict["file{0}".format(i)]
